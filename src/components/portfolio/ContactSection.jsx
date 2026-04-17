@@ -118,6 +118,7 @@ export default function ContactSection() {
           <form onSubmit={handleSubmit} className="glass-card rounded-2xl p-6 md:p-8 space-y-5">
             <div>
               <input
+              name="name"
                 placeholder="Your Name"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -126,6 +127,7 @@ export default function ContactSection() {
             </div>
             <div>
               <input
+              name="email"
                 type="email"
                 placeholder="Your Email"
                 value={form.email}
@@ -143,6 +145,7 @@ export default function ContactSection() {
               ></textarea>
             </div>
             <button
+            name="message"
               type="submit"
               disabled={sending}
               className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white h-12 rounded-xl glow-blue transition-all duration-300 hover:scale-[1.02]"
