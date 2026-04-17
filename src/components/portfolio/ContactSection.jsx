@@ -121,6 +121,7 @@ export default function ContactSection() {
               name="name"
                 placeholder="Your Name"
                 value={form.name}
+                required
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
                 className="bg-muted/30 border-border/50 focus:border-primary/50 h-12 rounded-xl text-sm placeholder:text-muted-foreground/50  w-full placeholder:px-2"
               />
@@ -131,21 +132,24 @@ export default function ContactSection() {
                 type="email"
                 placeholder="Your Email"
                 value={form.email}
+                required
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="bg-muted/30 border-border/50 focus:border-primary/50 h-12 rounded-xl text-sm placeholder:text-muted-foreground/50 w-full placeholder:px-2"
               />
             </div>
             <div>
               <textarea
+              name="message"
                 placeholder="Your Message"
                 rows={5}
+                required
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="bg-muted/30 border-border/50 focus:border-primary/50 rounded-xl text-sm placeholder:text-muted-foreground/50 resize-none w-full placeholder:px-2 py-2"
               ></textarea>
             </div>
             <button
-            name="message"
+            
               type="submit"
               disabled={sending}
               className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white h-12 rounded-xl glow-blue transition-all duration-300 hover:scale-[1.02]"
