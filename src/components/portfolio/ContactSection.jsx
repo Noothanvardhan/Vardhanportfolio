@@ -18,28 +18,39 @@ export default function ContactSection() {
   
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-    setSending(true);
-   const formData = new FormData(event.target);
-    formData.append("access_key", "6c71b8a2-8017-4704-b743-1a77eb6da3f4");
+  e.preventDefault();
 
+  if (!form.name || !form.email || !form.message) {
+    toast.error("Please fill in all fields");
+    return;
+  }
+
+  setSending(true);
+
+  const formData = new FormData(e.target);
+  formData.append("access_key", "6c71b8a2-8017-4704-b743-1a77eb6da3f4");
+
+  try {
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: formData
+      body: formData,
     });
-      if (!response.ok) {
-      toast.error("Failed to send message. Please try again.");
-    } else {
-      toast.success("Message sent successfully! I'll get back to you soon.");
-      setForm({ name: "", email: "", message: "" });
-    }
-    setSending(false);
-  };
 
+    const data = await response.json();
+
+    if (data.success) {
+      toast.success("Message sent successfully!");
+      setForm({ name: "", email: "", message: "" });
+    } else {
+      toast.error("Failed to send message");
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    toast.error("Something went wrong!");
+  }
+
+  setSending(false);
+};
   return (
     <SectionWrapper id="contact">
       <SectionHeading title="Get in Touch" subtitle="Have a project in mind? Let's work together!" />
